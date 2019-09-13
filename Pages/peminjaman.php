@@ -47,7 +47,15 @@
 					</div>
 					<div class="form-group">
 						<label>Alat yg dipinjam</label>
-						<input required name="namabarang" type="text" class="form-control" placeholder="Nama Alat">
+						<select required name="id_barang" type="text" class="form-control" >
+						<option dissabled selected> - Pilih Alat - </option>
+						<?php
+						    foreach($inventory->getData() as $list){
+                        ?>
+                        <option value="<?= $list['id_barang']?>"><?= $list['namabarang']?> - <?= $list['spec']?></option>
+						<?php }
+						?>
+						</select>
 					</div>
 					<div class="form-group">
 						<label>Qty</label>
