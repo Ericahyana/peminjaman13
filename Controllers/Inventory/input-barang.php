@@ -1,6 +1,6 @@
 <?php
 
-	include "/../../Model/inventory.php";
+	include "../../Model/inventory.php";
 	$inventory = new Inventory();
 	
 	//mengisi attribute dengan hasil dari inputan

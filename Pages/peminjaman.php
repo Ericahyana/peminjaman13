@@ -1,5 +1,5 @@
 <?php 
-	include "/../Model/inventory.php";
+	include "Model/inventory.php";
 	$inventory = new Inventory();
 ?>
 <h3>Peminjaman</h3>
@@ -75,11 +75,14 @@
 						<div class="panel panel-default">	
 
                             <!-- /.panel-heading -->
-                            <div class="panel-body">
+                            <div class="panel-body" style=" overflow-y: scroll;">
 
                                 <button style="margin-bottom:20px" data-toggle="modal" data-target="#tambah" class="btn btn-success col-md-2"><span class="glyphicon glyphicon-plus"></span> Tambah Peminjam</button>
-                                <div class="dataTable_wrapper">
-                                	<table class="table table-striped table-bordered table-hover" id="dataTables-example">		
+
+                                <a href="Controllers/Api/WhatsappApi.php" style="margin-bottom:20px; "  class="btn btn-success col-md-2"><span class="fab fa-whatsapp"></span> Kirim Notif WA </a>
+                                <div class="dataTable_wrapper ">
+                                	<table id="example" class="table datatable-save-state  table-striped table-bordered table-hover" >	
+                                		<thead>
 									<tr>
 										<th>No</th>
 										<th>Nama Peminjam</th>
@@ -93,6 +96,7 @@
 										<th>Validasi</th>
 										<th>Aksi</th>
 									</tr>
+								</thead>	
 									<tbody>
 								</div>
 							</div>
@@ -100,13 +104,15 @@
 <?php $result = $inventory->getPeminjaman(); 
 $i=0;?>
 <?php while ($data = $result->Fetch_assoc()): 
-$i++;?>
+$i++;
+
+$isi=$inventory->getIsiBarang($data['id_barang']);?>
 				<tr>
 					<td><?php echo $i; ?></td>
 					<td><?php echo $data['namapeminjam'] ?> </td>
 					<td><?php echo $data['no_tlp'] ?> </td>
 					<td><?php echo $data['kelas'] ?> </td>
-					<td><?php echo $data['namabarang'] ?> </td>
+					<td><?php echo $isi['namabarang'] ?> </td>
 					<td><?php echo $data['qty'] ?> </td>
 					<td><?php echo $data['peruntukkan'] ?> </td>
 					<td><?php echo $data['tgl_pinjam'] ?> </td>
@@ -118,8 +124,8 @@ $i++;?>
                         		if($tgl_kembali == '0000-00-00') {
                         	?>
                         	<form action="Controllers/Inventory/validasi.php" method="post">
-                        		<input type="hidden" name="id_peminjam" value="<?php echo $data['id_peminjam'] ?>">
-							<input required name="tgl_kembali"type="date" class="form-control" placeholder="Tgl Kembali">
+                        	<input type="hidden" name="id_peminjam" value="<?php echo $data['id_peminjam'] ?>">
+							<input required name="tgl_kembali"type="date" class="form-control" placeholder="Tgl Kembali" value="<?php echo date("Y-m-d") ?>">
 							<?php } else { ?>
 							<input type="hidden" name="id_peminjam" value="<?php echo $data['id_peminjam'] ?>">
 							<input required name="tgl_kembali" readonly type="date" class="form-control" value="<?php echo $data['tgl_kembali'] ?>" >

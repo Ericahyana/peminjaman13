@@ -14,7 +14,10 @@
    
     <!-- Bootstrap core CSS -->
     <link href="asset/css/bootstrap.css" rel="stylesheet">
+    <link href="asset/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="asset/css/chosen.css" rel="stylesheet">
     
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <!-- Add custom CSS here -->
     <link href="asset/css/sb-admin.css" rel="stylesheet">
 
@@ -35,7 +38,7 @@
             <span class="sr-only">Toggle navigation</span>
           </button>
           <a class="navbar-brand" href="aplication.php?page=halaman-utama">
-		  <img src="Images/logo13.png"width="30" height="30">&nbsp;<b>Inventory SMKN 13 Bandung</b></a>
+		  <img src="Images/logo13.png"width="30" height="30">&nbsp;<b>Peminjaman Barang</b></a>
         </div>
 
         <!-- Menu -->
@@ -73,27 +76,27 @@
                   <?php
             				if($page=="halaman-utama")
             				{
-            					include "/Pages/home.php";
+            					include "Pages/home.php";
             				}
             				if($page=="input-barang")
                     {
-                      include "/Pages/input-barang.php";
+                      include "Pages/input-barang.php";
                     }
                     if($page=="peminjaman")
                     {
-                      include "/Pages/peminjaman.php";
+                      include "Pages/peminjaman.php";
                     }
             				if($page=="data-user")
             				{
-            					include "/Pages/data-user.php";
+            					include "Pages/data-user.php";
             				}
                     if($page=="ubah-user")
                     {
-                      include "/Pages/ubahuser.php";
+                      include "Pages/ubahuser.php";
                     }
                     if($page=="ubah-barang")
                     {
-                      include "/Pages/ubahbarang.php";
+                      include "Pages/ubahbarang.php";
                     }
           				?>
                 </div>
@@ -110,8 +113,13 @@
        <script src="asset/js/bootstrap.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+  <script src="asset/js/jquery.dataTables.min.js"></script>
+  <script src="asset/js/chosen/Locale.en-US.Chosen.js"></script>
+  <script src="asset/js/chosen/chosen.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/mootools/1.3/mootools-yui-compressed.js"></script>
+  <script src="asset/js/chosen/mootools-more-1.4.0.1.js"></script>
 
-
+<script> $$("#chzn-select").chosen(); $$(".chzn-select-deselect").chosen({allow_single_deselect:true}); </script>
 
   </body>
 </html>

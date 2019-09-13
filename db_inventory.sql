@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2019 at 06:08 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 5.6.37
+-- Waktu pembuatan: 13 Sep 2019 pada 08.46
+-- Versi server: 10.1.32-MariaDB
+-- Versi PHP: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barang`
+-- Struktur dari tabel `barang`
 --
 
 CREATE TABLE `barang` (
@@ -37,7 +37,7 @@ CREATE TABLE `barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `barang`
+-- Dumping data untuk tabel `barang`
 --
 
 INSERT INTO `barang` (`id_barang`, `namabarang`, `spec`, `qty`, `no_lemari`) VALUES
@@ -170,7 +170,7 @@ INSERT INTO `barang` (`id_barang`, `namabarang`, `spec`, `qty`, `no_lemari`) VAL
 (165, 'Tatakan Solder', '-', '7', 'Lemari 4'),
 (166, 'Proyektor', 'View Sonic', '2', 'Lemari 4'),
 (167, 'Camera', 'Canon', '1', 'Lemari 4'),
-(168, 'Apture', '-', '1', 'Lemari 4'),
+(168, 'Apture', '-', '87', 'Lemari 2'),
 (169, 'Kabel UTP', '-', '1', 'Lemari 4'),
 (170, 'Laptop Rakitan Komjardar', 'Lenovo V310 - 14ISK, 80SK, Notebook LN V310 - 14ISK I3 4G 1 ', '1', 'Lemari 1'),
 (171, 'Laptop Rakitan Komjardar', 'Lenovo Ideapad 320-14ISK, Notebook IP 320 - 14ISK I3 4G 1 TB', '1', 'Lemari 4'),
@@ -250,12 +250,13 @@ INSERT INTO `barang` (`id_barang`, `namabarang`, `spec`, `qty`, `no_lemari`) VAL
 (246, 'Resistor', '100k', '1', 'Lemari 4'),
 (247, 'Resistor', '120k', '1', 'Lemari 4'),
 (248, 'Resistor', '150k', '1', 'Lemari 4'),
-(249, 'Resistor', '220k', '1', 'Lemari 4');
+(249, 'Resistor', '220k', '1', 'Lemari 4'),
+(250, 'testdd', 'sadasd', '90', 'Lemari 1');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login`
+-- Struktur dari tabel `login`
 --
 
 CREATE TABLE `login` (
@@ -266,16 +267,17 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `login`
+-- Dumping data untuk tabel `login`
 --
 
 INSERT INTO `login` (`id_user`, `namauser`, `username`, `password`) VALUES
-(2, 'Rian Ramadhan', 'Rian', 'admin');
+(2, 'Rian Ramadhan', 'Rian', 'admin'),
+(3, 'eri', 'eri', 'eri');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peminjaman`
+-- Struktur dari tabel `peminjaman`
 --
 
 CREATE TABLE `peminjaman` (
@@ -283,7 +285,7 @@ CREATE TABLE `peminjaman` (
   `namapeminjam` varchar(30) NOT NULL,
   `kelas` varchar(11) NOT NULL,
   `no_tlp` varchar(13) NOT NULL,
-  `namabarang` varchar(30) NOT NULL,
+  `id_barang` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
   `peruntukkan` varchar(30) NOT NULL,
   `tgl_pinjam` date NOT NULL,
@@ -291,64 +293,65 @@ CREATE TABLE `peminjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `peminjaman`
+-- Dumping data untuk tabel `peminjaman`
 --
 
-INSERT INTO `peminjaman` (`id_peminjam`, `namapeminjam`, `kelas`, `no_tlp`, `namabarang`, `qty`, `peruntukkan`, `tgl_pinjam`, `tgl_kembali`) VALUES
-(10, 'Rian', 'X TKJ 1', '08783928372', 'Routerboard', 2, 'KBM', '2018-09-17', '2018-09-19'),
-(12, 'Akbar', 'X RPL 3', '089645366627', 'Kamera', 1, 'Pemotretan', '2018-10-02', '2018-10-08'),
-(13, 'peminjam', 'XI RPL 1', '098753', 'Routerboard', 1, 'kbm', '2018-09-17', '2018-09-17'),
-(17, 'Asep', 'X TKJ 1', '0897666657764', 'Web Cam', 1, 'Video Conference', '2018-10-13', '2018-10-01'),
-(18, 'Rizal', 'XI TKJ 1', '089944332211', 'Crimping Tool', 4, 'Crimping kabel', '2018-10-14', '2018-10-16'),
-(20, 'Adhi', 'XII TKJ 2', '0865787754345', 'Switch', 1, 'KBM', '2018-10-16', '2018-10-16'),
-(30, 'Rama', 'XII TKJ 3', '087654445454', 'IC', 4, 'Praktek', '2018-10-24', '2018-11-06'),
-(31, 'Dani', 'X TKJ 1', '089776655443', 'Memory', 1, 'Praktek', '2018-10-16', '0000-00-00'),
-(35, 'Akbar', 'X RPL 2', '087654322', 'Routerboard 433AH', 1, 'KBM', '2018-11-05', '0000-00-00'),
-(36, 'Abdul', 'X TKJ 1', '087765334', 'mouse', 2, 'kBM', '2018-12-31', '2019-01-09');
+INSERT INTO `peminjaman` (`id_peminjam`, `namapeminjam`, `kelas`, `no_tlp`, `id_barang`, `qty`, `peruntukkan`, `tgl_pinjam`, `tgl_kembali`) VALUES
+(10, 'Rian', 'X TKJ 1', '08783928372', 39, 2, 'KBM', '2018-09-17', '2018-09-19'),
+(12, 'Akbar', 'X RPL 3', '089645366627', 40, 1, 'Pemotretan', '2018-10-02', '2018-10-08'),
+(13, 'peminjam', 'XI RPL 1', '098753', 41, 1, 'kbm', '2018-09-17', '2018-09-17'),
+(17, 'Asep', 'X TKJ 1', '08986897962', 42, 1, 'Video Conference', '2018-10-13', '0000-00-00'),
+(18, 'Rizal', 'XI TKJ 1', '089944332211', 43, 4, 'Crimping kabel', '2018-10-14', '2018-10-16'),
+(20, 'Adhi', 'XII TKJ 2', '0865787754345', 44, 1, 'KBM', '2018-10-16', '2018-10-16'),
+(30, 'Rama', 'XII TKJ 3', '087654445454', 45, 4, 'Praktek', '2018-10-24', '2018-11-06'),
+(31, 'Dani', 'X TKJ 1', '089776655443', 46, 1, 'Praktek', '2018-10-16', '2019-09-07'),
+(35, 'Eri', 'X RPL 2', '08986897962', 47, 1, 'KBM', '2018-11-05', '2019-09-13'),
+(36, 'Abdul', 'X TKJ 1', '087765334', 48, 2, 'kBM', '2019-09-12', '2019-01-09'),
+(39, 'asdas', 'X TKJ 1', '23234', 76, 6, 'sdfsd', '2019-09-07', '2019-09-13');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `barang`
+-- Indeks untuk tabel `barang`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`id_barang`);
 
 --
--- Indexes for table `login`
+-- Indeks untuk tabel `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indexes for table `peminjaman`
+-- Indeks untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
   ADD PRIMARY KEY (`id_peminjam`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `barang`
+-- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
+  MODIFY `id_barang` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=252;
 
 --
--- AUTO_INCREMENT for table `login`
+-- AUTO_INCREMENT untuk tabel `login`
 --
 ALTER TABLE `login`
-  MODIFY `id_user` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `peminjaman`
+-- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjam` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_peminjam` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

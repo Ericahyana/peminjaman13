@@ -1,5 +1,5 @@
    <?php 
-  include "/../Model/inventory.php";
+  include "Model/inventory.php";
   $inventory = new Inventory();
 ?>    
       <h3>Ubah</h3>
@@ -14,7 +14,7 @@
   <div class="panel panel-default">
       <form action="Controllers/inventory/ubahbarang.php" method="post">
 
-
+<input type="hidden" class="form-control" name="id_barang" value="<?php echo $data['id_barang'] ?>">
         <table width="60%" class="table">
             <tr>
               <td>Nama Barang</td>  
@@ -26,14 +26,20 @@
             </tr>
             <tr>
               <td>Qty</td>  
-              <td><input type="text" class="form-control" name="qty" value="<?php echo $data['qty'] ?>"></td> 
+              <td><input type="number" class="form-control" name="qty" value="<?php echo $data['qty'] ?>"></td> 
             </tr>
             <tr>
               <td>Nomor Lemari</td>  
-              <td><input type="text" class="form-control" name="no_lemari" value="<?php echo $data['no_lemari'] ?>"></td> 
+              <td>
+                <select required name="no_lemari"  class="form-control">
+              <option <?php if($data['no_lemari']=='Lemari 1'){echo' selected ';}?>>Lemari 1</option>
+              <option <?php if($data['no_lemari']=='Lemari 2'){echo' selected ';}?>>Lemari 2</option>
+              <option <?php if($data['no_lemari']=='Lemari 3'){echo' selected ';}?>>Lemari 3</option>
+              <option <?php if($data['no_lemari']=='Lemari 4'){echo' selected ';}?>>Lemari 4</option>
+            </select></td> 
             </tr>
             <td></td>
-            <td><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-save"></span>  Simpan</td></td>
+            <td><button type="submit" class="btn btn-info"><span class="fa fa-save"></span>  Simpan</td></td>
           </tr>
         </table>
     </form>

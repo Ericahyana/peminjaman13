@@ -1,5 +1,5 @@
    <?php 
-	include "/../Model/inventory.php";
+	include "Model/inventory.php";
 	$inventory = new Inventory();
 ?>
 <h3>Input Barang</h3>
@@ -46,12 +46,41 @@
 	</div>
 </div>
 
+<?php 
+			if(isset($_GET['no_lemari'])){
+				$no_lemari=$_GET['no_lemari'];
+			}else{
+				$no_lemari="Lemari 1";
+			}
+?>
+
 				    <div class="panel panel-default">					 
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <div class="dataTable_wrapper">
                                 <button style="margin-bottom:20px" data-toggle="modal" data-target="#tambah" class="btn btn-success col-md-2"><span class="glyphicon glyphicon-plus"></span> Input Barang</button>
-								<table class="table table-striped table-bordered table-hover" id="dataTables-example">								
+                                &nbsp;
+                                <ul class="navbar-nav">
+                                <span style="margin-bottom:20px;margin-left:20px;margin-right:20px;width: 60px;font-size: 1pc" class="col-md-2">No Lemari</span>
+	                                
+	                                <li class="nav-item">
+	                                	<a href="?page=input-barang&no_lemari=Lemari 1" style="margin-bottom:20px" class="btn <?php if($no_lemari=='Lemari 1'){echo' btn-success';}else{ echo' btn-info'; } ?> col-md-3">1</a>
+	                                </li>
+	                                <li class="nav-item">
+	                                	<a href="?page=input-barang&no_lemari=Lemari 2" style="margin-bottom:20px" class="btn <?php if($no_lemari=='Lemari 2'){echo' btn-success';}else{ echo' btn-info'; } ?> col-md-3">2</a>
+	                                </li>
+	                                <li class="nav-item">
+	                                	<a href="?page=input-barang&no_lemari=Lemari 3" style="margin-bottom:20px" class="btn <?php if($no_lemari=='Lemari 3'){echo' btn-success';}else{ echo' btn-info'; } ?> col-md-3">3</a>
+	                                </li>
+	                                <li class="nav-item">
+	                                	<a href="?page=input-barang&no_lemari=Lemari 4" style="margin-bottom:20px" class="btn <?php if($no_lemari=='Lemari 4'){echo' btn-success';}else{ echo' btn-info'; } ?> col-md-3">4</a>
+	                                </li>
+
+                                </ul>
+
+                                <div class="dataTable_wrapper">
+								<table id="example" class="table datatable-save-state  table-striped table-bordered table-hover" >								
+									<thead>
+										
 									<tr>
 										<th>No</th>
 										<th>Nama Barang</th>
@@ -61,13 +90,12 @@
 										<th size="20%">Aksi</th>
 										
 									</tr>
+									</thead>
 									<tbody>
-								</div>
-							</div>
+								
+			<?php 
 
-						</div>
-
-			<?php $result = $inventory->getBarang();
+			$result = $inventory->getBarang($no_lemari);
 			$i=0; ?>
 			<?php while ($data = $result->Fetch_assoc()): 
 			$i++;?>
@@ -89,3 +117,10 @@
 				</tr>
 
 				<?php endwhile ?>
+								</tbody>
+								</div>
+							</div>
+
+						</div>
+
+						

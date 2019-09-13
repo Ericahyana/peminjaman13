@@ -104,10 +104,20 @@
 			return $data;
 		}
 
-		public function getBarang() {
+		public function getBarang($no_lemari) {
 			$db = new Database();
 			$dbConnect = $db->connect();
-			$sql = "SELECT * FROM barang order by namabarang ASC";
+			$sql = "SELECT * FROM barang where no_lemari='{$no_lemari}' order by namabarang ASC";
+			$data = $dbConnect->query($sql);
+			
+			$dbConnect = $db->close();
+			return $data;
+		}
+
+		public function getBarang2() {
+			$db = new Database();
+			$dbConnect = $db->connect();
+			$sql = "SELECT DISTINCT namabarang FROM barang order by namabarang ASC";
 			$data = $dbConnect->query($sql);
 			
 			$dbConnect = $db->close();
@@ -226,7 +236,7 @@
 						namapeminjam,
 						no_tlp,
 						kelas,
-						namabarang,
+						id_barang,
 						qty,
 						peruntukkan,
 						tgl_pinjam
@@ -236,7 +246,7 @@
 						'{$this->namapeminjam}',
 						'{$this->no_tlp}',
 						'{$this->kelas}',
-						'{$this->namabarang}',
+						'{$this->id_barang}',
 						'{$this->qty}',
 						'{$this->peruntukkan}',
 						'{$this->tgl_pinjam}'

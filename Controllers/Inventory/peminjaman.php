@@ -1,11 +1,11 @@
 <?php
 
-	include "/../../Model/inventory.php";
+	include "../../Model/inventory.php";
 	$inventory = new Inventory();
 	
 	//mengisi attribute dengan hasil dari inputan
 	$inventory->namapeminjam = $_POST['namapeminjam'];
-	$inventory->namabarang = $_POST['namabarang'];
+	$inventory->id_barang = $_POST['id_barang'];
 	$inventory->no_tlp = $_POST['no_tlp'];
 	$inventory->kelas = $_POST['kelas'];
 	$inventory->qty = $_POST['qty'];

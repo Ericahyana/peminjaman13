@@ -1,5 +1,5 @@
    <?php 
-  include "/../Model/inventory.php";
+  include "Model/inventory.php";
   $inventory = new Inventory();
 ?>    
       <h3>Ubah</h3>
