@@ -1,4 +1,4 @@
-<center><h1>Pengelolaan Inventory dan Peminjaman Barang di SMKN 13 Bandung</h1></center>
+<center><h1>Peminjaman Barang di SMKN 13 Bandung</h1></center>
 							
                          <div class="panel panel-default">
                             <div class="panel-body">
